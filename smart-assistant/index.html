@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Assistant | IoT Project</title>
+    
+    <!-- PWA 설정 -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#64b4ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SmartAssist">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 배경 그리드 효과 -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <div class="app">
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-dot"></div>
+                <span class="logo-text">SMART.ASSIST</span>
+                <span class="logo-version">v1.0</span>
+            </div>
+            <div class="clock" id="clock">
+                <span class="clock-time" id="clockTime">--:--:--</span>
+                <span class="clock-date" id="clockDate">----.--.--</span>
+            </div>
+        </header>
+
+        <!-- 입력창 -->
+        <section class="command-bar">
+            <div class="command-input-wrapper">
+                <span class="command-prompt">&gt;</span>
+                <input 
+                    type="text" 
+                    id="commandInput" 
+                    class="command-input" 
+                    placeholder="명령어를 입력하세요 (예: 서울 날씨, 환율, 뉴스, 유튜브 뉴진스)"
+                    autocomplete="off"
+                    autofocus
+                >
+                <button class="command-submit" id="commandSubmit">
+                    <span>실행</span>
+                    <span class="key-hint">↵</span>
+                </button>
+            </div>
+            <div class="command-hints">
+                <span class="hint-label">빠른 명령:</span>
+                <button class="hint-chip" data-command="서울 날씨">🌤 서울 날씨</button>
+                <button class="hint-chip" data-command="환율">💱 환율</button>
+                <button class="hint-chip" data-command="뉴스">📰 뉴스</button>
+                <button class="hint-chip" data-command="유튜브 lofi">📺 유튜브</button>
+                <button class="hint-chip" data-command="구글 파이썬">🔍 구글</button>
+            </div>
+        </section>
+
+        <!-- 상태 표시 -->
+        <div class="status-bar" id="statusBar">
+            <span class="status-dot"></span>
+            <span class="status-text" id="statusText">대기 중 - 명령어를 입력하세요</span>
+        </div>
+
+        <!-- 결과 카드 영역 -->
+        <main class="results" id="results">
+            <!-- 초기 안내 카드 -->
+            <div class="welcome-card">
+                <div class="welcome-icon">⌘</div>
+                <h2>스마트 어시스턴트에 오신 것을 환영합니다</h2>
+                <p>날씨, 환율, 뉴스 정보를 확인하거나<br>유튜브/구글 검색을 빠르게 실행할 수 있습니다.</p>
+                <div class="welcome-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🌤</span>
+                        <div>
+                            <strong>실시간 날씨</strong>
+                            <small>OpenWeatherMap</small>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💱</span>
+                        <div>
+                            <strong>실시간 환율</strong>
+                            <small>ExchangeRate-API</small>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📰</span>
+                        <div>
+                            <strong>뉴스 헤드라인</strong>
+                            <small>NewsAPI</small>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🔍</span>
+                        <div>
+                            <strong>통합 검색</strong>
+                            <small>Google / YouTube</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 푸터 -->
+        <footer class="footer">
+            <span>IoT Sensor Project · Smart Assistant Simulation</span>
+            <span class="footer-dot">•</span>
+            <span>Powered by Web APIs</span>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
