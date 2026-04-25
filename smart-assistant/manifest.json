@@ -2,7 +2,7 @@
   "name": "Smart Assistant",
   "short_name": "SmartAssist",
   "description": "날씨, 환율, 뉴스를 한 번에 확인하는 스마트 어시스턴트",
-  "start_url": "./index.html",
+  "start_url": "./captcha.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

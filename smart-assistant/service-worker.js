@@ -2,12 +2,14 @@
    Service Worker - Smart Assistant
    ============================================ */
 
-const CACHE_NAME = 'smart-assistant-v2';
+const CACHE_NAME = 'smart-assistant-v3';
 const CACHE_FILES = [
     './',
     './index.html',
+    './captcha.html',
     './style.css',
     './app.js',
+    './captcha.js',
     './manifest.json',
     './icon-192.png',
     './icon-512.png'

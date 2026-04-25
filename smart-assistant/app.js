@@ -1144,6 +1144,18 @@ function showMusicPlaylist(query) {
 //   초기 상태 & Service Worker
 // ═══════════════════════════════════════════════
 
+// ───────────── 로그아웃 (CAPTCHA로 복귀) ─────────────
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        if (confirm('정말 로그아웃 하시겠습니까?\n(다시 CAPTCHA 인증이 필요합니다)')) {
+            sessionStorage.removeItem('captcha_verified');
+            sessionStorage.removeItem('captcha_verified_at');
+            window.location.href = 'captcha.html';
+        }
+    });
+}
+
 // ───────────── 초기 상태 ─────────────
 setStatus('대기 중 - 명령어를 입력하세요');
 console.log('%c🚀 Smart Assistant Loaded', 'color: #64b4ff; font-weight: bold; font-size: 14px;');

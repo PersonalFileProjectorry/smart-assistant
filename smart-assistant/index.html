@@ -19,6 +19,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- CAPTCHA 인증 체크 (인증 안 되어 있으면 captcha.html로 리다이렉트) -->
+    <script>
+        (function() {
+            const verified = sessionStorage.getItem('captcha_verified');
+            const verifiedAt = parseInt(sessionStorage.getItem('captcha_verified_at') || '0', 10);
+            const SESSION_TTL = 30 * 60 * 1000;  // 30분 유효
+            if (verified !== 'true' || Date.now() - verifiedAt >= SESSION_TTL) {
+                window.location.replace('captcha.html');
+            }
+        })();
+    </script>
 </head>
 <body>
     <!-- 배경 그리드 효과 -->
@@ -36,6 +48,7 @@
             <div class="clock" id="clock">
                 <span class="clock-time" id="clockTime">--:--:--</span>
                 <span class="clock-date" id="clockDate">----.--.--</span>
+                <button id="logoutBtn" style="margin-top:6px;padding:4px 10px;background:rgba(100,180,255,0.08);border:1px solid var(--border);border-radius:6px;color:var(--text-muted);font-family:var(--font-mono);font-size:10px;cursor:pointer;letter-spacing:0.05em;">🔒 LOGOUT</button>
             </div>
         </header>
 
