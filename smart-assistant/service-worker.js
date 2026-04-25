@@ -2,9 +2,10 @@
    Service Worker - Smart Assistant
    ============================================ */
 
-const CACHE_NAME = 'smart-assistant-v4';
+const CACHE_NAME = 'smart-assistant-v5';
 const CACHE_FILES = [
     './',
+    './landing.html',
     './index.html',
     './captcha.html',
     './style.css',
