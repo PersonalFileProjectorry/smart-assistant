@@ -18,84 +18,164 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
-            height: 100%;
+            min-height: 100vh;
             background: #0a0e1a;
             color: #e8ecf5;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-            overflow: hidden;
+        }
+        body {
+            background-image: 
+                linear-gradient(rgba(100, 180, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 180, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
         .container {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 20px;
+            padding: 24px;
+            position: relative;
         }
+        .glow {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(100, 180, 255, 0.3) 0%, transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .content { position: relative; z-index: 1; max-width: 480px; }
         .logo {
-            font-size: 48px;
-            margin-bottom: 16px;
+            font-size: 64px;
+            margin-bottom: 24px;
             background: linear-gradient(135deg, #64b4ff, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         h1 {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             background: linear-gradient(135deg, #e8ecf5, #64b4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 0.05em;
         }
-        p {
+        .subtitle {
             color: #8b95a8;
             font-size: 14px;
-            margin-bottom: 32px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
         }
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(100, 180, 255, 0.1);
-            border-top-color: #64b4ff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .description {
+            color: #5a6478;
+            font-size: 13px;
+            margin-bottom: 36px;
+            line-height: 1.7;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 36px;
+            text-align: left;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: rgba(20, 27, 45, 0.6);
+            border: 1px solid rgba(100, 120, 180, 0.15);
+            border-radius: 10px;
+            font-size: 13px;
+            color: #e8ecf5;
+        }
+        .feature-icon { font-size: 20px; }
+        .start-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #64b4ff, #a78bfa);
+            color: #0a0e1a;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 24px rgba(100, 180, 255, 0.3);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        .start-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(100, 180, 255, 0.5);
+        }
+        .start-button:active {
+            transform: translateY(0);
         }
         .footer {
-            position: absolute;
-            bottom: 24px;
+            margin-top: 32px;
             font-size: 11px;
             color: #5a6478;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             font-family: "JetBrains Mono", monospace;
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 26px; }
+            .features { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <div class="glow"></div>
     <div class="container">
-        <div class="logo">⌘</div>
-        <h1>SMART.ASSIST</h1>
-        <p>잠시만 기다려주세요...</p>
-        <div class="spinner"></div>
-        <div class="footer">IoT · MQTT · CAPTCHA</div>
-    </div>
+        <div class="content">
+            <div class="logo">⌘</div>
+            <h1>SMART.ASSIST</h1>
+            <div class="subtitle">IoT 기반 스마트 어시스턴트</div>
+            <p class="description">
+                날씨, 환율, 뉴스부터 점심 메뉴 추천까지<br>
+                18가지 기능을 한 곳에서
+            </p>
 
-    <script>
-        // 페이지 로드 완료 후 captcha.html로 자동 이동
-        // PWA Builder 검증 시: 이 페이지로 검증 통과
-        // 앱 실행 시: 1초 후 captcha로 이동
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                window.location.replace('captcha.html');
-            }, 1000);
-        });
-    </script>
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon">🌤</span>
+                    <span>실시간 날씨</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">💱</span>
+                    <span>환율 정보</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📰</span>
+                    <span>뉴스 헤드라인</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🍚</span>
+                    <span>메뉴 추천</span>
+                </div>
+            </div>
+
+            <a href="captcha.html" class="start-button">
+                시작하기 →
+            </a>
+
+            <div class="footer">IoT · MQTT · CAPTCHA</div>
+        </div>
+    </div>
 </body>
 </html>
