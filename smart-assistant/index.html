@@ -27,7 +27,7 @@
             const verifiedAt = parseInt(sessionStorage.getItem('captcha_verified_at') || '0', 10);
             const SESSION_TTL = 30 * 60 * 1000;  // 30분 유효
             if (verified !== 'true' || Date.now() - verifiedAt >= SESSION_TTL) {
-                window.location.replace('captcha.html');
+                window.location.replace('landing.html');
             }
         })();
     </script>
