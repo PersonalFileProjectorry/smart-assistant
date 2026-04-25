@@ -1,0 +1,14 @@
+{
+  "name": "smart-assistant-log-server",
+  "version": "1.0.0",
+  "description": "Smart Assistant CAPTCHA 로그인 이벤트 수집 서버 (MQTT → SQLite)",
+  "main": "log-server.js",
+  "scripts": {
+    "start": "node log-server.js",
+    "logs": "node view-logs.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.5.0",
+    "mqtt": "^5.10.1"
+  }
+}
